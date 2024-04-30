@@ -15,6 +15,7 @@ import { ethers } from "ethers";
 interface Web2LoginContextType {
   loggedIn: boolean;
   email?: string;
+  wallet: EVMAAWallet | null;
   login: () => Promise<void>;
   logout: () => Promise<void>;
 }
@@ -124,7 +125,9 @@ export function Web2LoginProvider({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <Web2LoginContext.Provider value={{ loggedIn, email, login, logout }}>
+    <Web2LoginContext.Provider
+      value={{ loggedIn, email, wallet, login, logout }}
+    >
       {children}
     </Web2LoginContext.Provider>
   );

@@ -37,7 +37,7 @@ export type NetworkConfiguration = {
 
 export const networkConfiguration: NetworkConfiguration = {
   chain: astarZkEVM,
-  crossmintProjectId: "7beaa32d-6404-4c9c-9622-13f77d34cc8b",
-  crossmintEnvironment: "staging",
-  web3AuthNetwork: "sapphire_devnet",
+  crossmintProjectId: "25bfa4db-ee92-412b-91fc-6ddeced0d8c6",
+  crossmintEnvironment: "production",
+  web3AuthNetwork: "sapphire_mainnet",
 };
