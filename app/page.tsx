@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useWeb2LoginProvider } from "./Web2LoginProvider";
 import { ethers } from "ethers";
+import WalletConnect from "./walletconntect";
 
 export default function Home() {
   const { loggedIn, email, wallet, login, logout } = useWeb2LoginProvider();
@@ -33,6 +34,7 @@ export default function Home() {
             Address: {address}
             <br />
             Balance: {balance}
+            <WalletConnect />
           </div>
         )}
       </div>
