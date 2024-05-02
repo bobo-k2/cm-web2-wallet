@@ -16,6 +16,7 @@ interface Web2LoginContextType {
   loggedIn: boolean;
   email?: string;
   wallet: EVMAAWallet | null;
+  address: string | undefined;
   login: () => Promise<void>;
   logout: () => Promise<void>;
 }
@@ -52,6 +53,7 @@ export function Web2LoginProvider({ children }: { children: React.ReactNode }) {
   const [signer, setSigner] = useState<ethers.providers.JsonRpcSigner | null>(
     null
   );
+  const [address, setAddress] = useState<string | undefined>();
 
   useEffect(() => {
     const initWeb3Auth = async () => {
@@ -85,6 +87,7 @@ export function Web2LoginProvider({ children }: { children: React.ReactNode }) {
     const wallet = await createAAWalletHelper(ethSigner, email);
     console.log(wallet);
     setWallet(wallet);
+    setAddress(await wallet.getAddress());
 
     if (web3auth.connected) {
       setLoggedIn(true);
@@ -126,7 +129,7 @@ export function Web2LoginProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <Web2LoginContext.Provider
-      value={{ loggedIn, email, wallet, login, logout }}
+      value={{ loggedIn, email, wallet, address, login, logout }}
     >
       {children}
     </Web2LoginContext.Provider>
